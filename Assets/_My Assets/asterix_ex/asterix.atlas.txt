@@ -1,0 +1,83 @@
+
+asterix.png
+size: 355,96
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+asterix/body
+  rotate: false
+  xy: 167, 8
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+asterix/claw
+  rotate: true
+  xy: 99, 60
+  size: 34, 122
+  orig: 34, 122
+  offset: 0, 0
+  index: -1
+asterix/fist
+  rotate: false
+  xy: 99, 13
+  size: 66, 45
+  orig: 66, 45
+  offset: 0, 0
+  index: -1
+asterix/head
+  rotate: false
+  xy: 2, 5
+  size: 95, 89
+  orig: 95, 89
+  offset: 0, 0
+  index: -1
+asterix/l hand
+  rotate: false
+  xy: 301, 3
+  size: 27, 23
+  orig: 27, 23
+  offset: 0, 0
+  index: -1
+asterix/l leg
+  rotate: false
+  xy: 301, 28
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+asterix/r hand
+  rotate: false
+  xy: 330, 30
+  size: 23, 29
+  orig: 23, 29
+  offset: 0, 0
+  index: -1
+asterix/r leg
+  rotate: true
+  xy: 309, 61
+  size: 33, 36
+  orig: 33, 36
+  offset: 0, 0
+  index: -1
+asterix/scapular
+  rotate: true
+  xy: 330, 4
+  size: 24, 21
+  orig: 24, 21
+  offset: 0, 0
+  index: -1
+asterix/shadow
+  rotate: false
+  xy: 223, 67
+  size: 84, 27
+  orig: 84, 27
+  offset: 0, 0
+  index: -1
+asterix/sword
+  rotate: false
+  xy: 223, 2
+  size: 76, 63
+  orig: 76, 63
+  offset: 0, 0
+  index: -1
