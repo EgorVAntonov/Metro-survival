@@ -13,9 +13,9 @@ TagManager:
   - UI
   - Unit
   - Player
-  - 
-  - 
-  - 
+  - Platform
+  - Buildings
+  - Resources
   - 
   - 
   - 
@@ -53,12 +53,21 @@ TagManager:
   - name: Background_3
     uniqueID: 816075715
     locked: 0
+  - name: Trees
+    uniqueID: 3084313853
+    locked: 0
   - name: Background_4
     uniqueID: 4069149175
+    locked: 0
+  - name: Buildings
+    uniqueID: 1343602465
     locked: 0
   - name: Character
     uniqueID: 2995691419
     locked: 0
   - name: Units
     uniqueID: 512336143
+    locked: 0
+  - name: UI
+    uniqueID: 376007623
     locked: 0

@@ -1,0 +1,153 @@
+
+scarface.png
+size: 1441,114
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+scarface/axe_attack/axe_attack_00002
+  rotate: false
+  xy: 115, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00003
+  rotate: false
+  xy: 237, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00004
+  rotate: false
+  xy: 359, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00005
+  rotate: false
+  xy: 481, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00006
+  rotate: false
+  xy: 603, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00007
+  rotate: false
+  xy: 725, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00008
+  rotate: false
+  xy: 847, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_attack/axe_attack_00009
+  rotate: false
+  xy: 969, 5
+  size: 120, 107
+  orig: 120, 107
+  offset: 0, 0
+  index: -1
+scarface/axe_left
+  rotate: false
+  xy: 1245, 56
+  size: 68, 56
+  orig: 68, 56
+  offset: 0, 0
+  index: -1
+scarface/axe_right
+  rotate: false
+  xy: 1177, 53
+  size: 66, 59
+  orig: 66, 59
+  offset: 0, 0
+  index: -1
+scarface/blade_air1
+  rotate: true
+  xy: 1315, 78
+  size: 34, 122
+  orig: 34, 122
+  offset: 0, 0
+  index: -1
+scarface/body
+  rotate: false
+  xy: 1177, 6
+  size: 54, 45
+  orig: 54, 45
+  offset: 0, 0
+  index: -1
+scarface/head
+  rotate: true
+  xy: 1091, 41
+  size: 71, 84
+  orig: 71, 84
+  offset: 0, 0
+  index: -1
+scarface/left_arm
+  rotate: true
+  xy: 1315, 56
+  size: 20, 29
+  orig: 20, 29
+  offset: 0, 0
+  index: -1
+scarface/leg_left
+  rotate: true
+  xy: 1375, 2
+  size: 33, 35
+  orig: 33, 35
+  offset: 0, 0
+  index: -1
+scarface/leg_right
+  rotate: false
+  xy: 1412, 4
+  size: 27, 31
+  orig: 27, 31
+  offset: 0, 0
+  index: -1
+scarface/light
+  rotate: false
+  xy: 2, 3
+  size: 111, 109
+  orig: 111, 109
+  offset: 0, 0
+  index: -1
+scarface/right_arm
+  rotate: true
+  xy: 1415, 50
+  size: 26, 24
+  orig: 26, 24
+  offset: 0, 0
+  index: -1
+scarface/shadow
+  rotate: false
+  xy: 1091, 12
+  size: 84, 27
+  orig: 84, 27
+  offset: 0, 0
+  index: -1
+scarface/shoulder_pad
+  rotate: true
+  xy: 1375, 37
+  size: 39, 38
+  orig: 39, 38
+  offset: 0, 0
+  index: -1
+scarface/tail
+  rotate: false
+  xy: 1245, 13
+  size: 128, 41
+  orig: 128, 41
+  offset: 0, 0
+  index: -1

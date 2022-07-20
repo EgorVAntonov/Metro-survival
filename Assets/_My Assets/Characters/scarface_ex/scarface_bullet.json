@@ -1,0 +1,170 @@
+{
+"skeleton": {
+	"hash": "EhamK3K2dudG/iOpPAB6Vu4JBPo",
+	"spine": "3.8.99",
+	"x": -88.51,
+	"y": -59.42,
+	"width": 144.64,
+	"height": 123.33,
+	"images": "",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "axe", "parent": "root" },
+	{ "name": "tail", "parent": "root", "scaleY": 1.3912 },
+	{ "name": "light", "parent": "root" },
+	{ "name": "axe_attack", "parent": "root", "scaleX": 1.4114, "scaleY": 1.4114 },
+	{ "name": "axe2", "parent": "root", "rotation": 66.91, "y": -0.34 }
+],
+"slots": [
+	{ "name": "scarface/tail", "bone": "tail", "attachment": "scarface/tail" },
+	{ "name": "scarface/light", "bone": "light", "attachment": "scarface/light" },
+	{ "name": "scarface/axe_right2", "bone": "axe2", "color": "ffffff7e", "attachment": "scarface/axe_right" },
+	{ "name": "scarface/axe_right", "bone": "axe", "attachment": "scarface/axe_right" },
+	{ "name": "scarface/axe_attack/axe_attack_00000", "bone": "axe_attack" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"scarface/axe_attack/axe_attack_00000": {
+				"scarface/axe_attack/axe_attack_00002": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00003": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00004": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00005": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00006": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00007": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00008": { "width": 120, "height": 107 },
+				"scarface/axe_attack/axe_attack_00009": { "width": 120, "height": 107 }
+			},
+			"scarface/axe_right": {
+				"scarface/axe_right": { "x": 11.02, "y": 1.44, "width": 66, "height": 59 }
+			},
+			"scarface/axe_right2": {
+				"scarface/axe_right": { "x": 11.02, "y": 1.44, "width": 66, "height": 59 }
+			},
+			"scarface/light": {
+				"scarface/light": { "x": -6.67, "y": 2.24, "scaleX": 1.1315, "scaleY": 1.1315, "width": 111, "height": 109 }
+			},
+			"scarface/tail": {
+				"scarface/tail": { "x": -24.51, "y": 0.85, "width": 128, "height": 41 }
+			}
+		}
+	}
+],
+"animations": {
+	"attack": {
+		"slots": {
+			"scarface/axe_attack/axe_attack_00000": {
+				"color": [
+					{ "color": "ffc6c6e0" }
+				],
+				"attachment": [
+					{ "name": "scarface/axe_attack/axe_attack_00002" },
+					{ "time": 0.1, "name": "scarface/axe_attack/axe_attack_00003" },
+					{ "time": 0.1333, "name": "scarface/axe_attack/axe_attack_00004" },
+					{ "time": 0.1667, "name": "scarface/axe_attack/axe_attack_00005" },
+					{ "time": 0.2, "name": "scarface/axe_attack/axe_attack_00006" },
+					{ "time": 0.2333, "name": "scarface/axe_attack/axe_attack_00007" },
+					{ "time": 0.2667, "name": "scarface/axe_attack/axe_attack_00008" },
+					{ "time": 0.3, "name": "scarface/axe_attack/axe_attack_00009" },
+					{ "time": 0.3333, "name": null }
+				]
+			},
+			"scarface/axe_right": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scarface/axe_right2": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scarface/light": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scarface/tail": {
+				"attachment": [
+					{ "name": null }
+				]
+			}
+		},
+		"bones": {
+			"axe_attack": {
+				"scale": [
+					{ "x": 0.339, "y": 0.339 },
+					{ "time": 0.1 }
+				]
+			}
+		}
+	},
+	"idle": {
+		"slots": {
+			"scarface/axe_attack/axe_attack_00000": {
+				"attachment": [
+					{ "name": null }
+				]
+			},
+			"scarface/axe_right": {
+				"attachment": [
+					{ "name": "scarface/axe_right" }
+				]
+			},
+			"scarface/axe_right2": {
+				"attachment": [
+					{ "name": "scarface/axe_right" }
+				]
+			},
+			"scarface/light": {
+				"color": [
+					{ "color": "ffd1d176" }
+				],
+				"attachment": [
+					{ "name": "scarface/light" }
+				]
+			},
+			"scarface/tail": {
+				"color": [
+					{ "color": "fce4e447" }
+				],
+				"attachment": [
+					{ "name": "scarface/tail" }
+				]
+			}
+		},
+		"bones": {
+			"axe": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -90 },
+					{ "time": 0.2, "angle": 180 },
+					{ "time": 0.3, "angle": 90 },
+					{ "time": 0.4 }
+				]
+			},
+			"tail": {
+				"scale": [
+					{},
+					{ "time": 0.1, "x": 1.331, "y": 0.879 },
+					{ "time": 0.2 },
+					{ "time": 0.3, "x": 1.331, "y": 0.879 },
+					{ "time": 0.4 }
+				]
+			},
+			"axe2": {
+				"rotate": [
+					{},
+					{ "time": 0.1, "angle": -90 },
+					{ "time": 0.2, "angle": 180 },
+					{ "time": 0.3, "angle": 90 },
+					{ "time": 0.4 }
+				]
+			}
+		}
+	}
+}
+}

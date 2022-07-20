@@ -4,8 +4,8 @@ using Spine.Unity;
 public class Player : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CustomButton movementButton_left;
-    [SerializeField] private CustomButton movementButton_right;
+    [SerializeField] private MovementButton movementButton_left;
+    [SerializeField] private MovementButton movementButton_right;
 
     [Header("Components")]
     [SerializeField] private SkeletonAnimation skeletonAnimation;
@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     [SpineAnimation]
     [SerializeField] private string walk;
 
-    [Header("options")]
+    [Header("Options")]
     [SerializeField] private float speed;
 
     private Spine.AnimationState spineAnimator;
@@ -50,7 +50,7 @@ public class Player : MonoBehaviour
     {
         if (movementDirection == 0) return;
 
-        transform.Translate(Utility.GetVectorWithX(speed * movementDirection * Time.deltaTime));
+        transform.Translate(new Vector3(speed * movementDirection * Time.deltaTime, 0f, 0f));
     }
 
     private void UpdateMovementDirection(int delta)
@@ -80,13 +80,6 @@ public class Player : MonoBehaviour
 
         currentAnimation = name;
         spineAnimator.SetAnimation(0, name, loop);
-    }
-
-    public void TryRecruitUnit(Unit unit)
-    {
-        if (squad.AlreadyHas(unit)) return;
-
-        squad.AddUnit(unit);
     }
 
     public float GetWalkSpeed()

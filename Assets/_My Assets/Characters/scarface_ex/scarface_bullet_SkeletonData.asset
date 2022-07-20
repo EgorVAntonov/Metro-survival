@@ -10,19 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
-  m_Name: asterix_SkeletonData
+  m_Name: scarface_bullet_SkeletonData
   m_EditorClassIdentifier: 
   atlasAssets:
-  - {fileID: 11400000, guid: 439058b125e37404d9b6e2d752c7e038, type: 2}
-  scale: 0.015
-  skeletonJSON: {fileID: 4900000, guid: 03b7c60b96e6ba048b7ef3dbaa784978, type: 3}
+  - {fileID: 11400000, guid: c684852998d22a047bc5aa72c7ca3e72, type: 2}
+  scale: 0.01
+  skeletonJSON: {fileID: 4900000, guid: d7710eb6408d1164aac747f6ffc9638b, type: 3}
   isUpgradingBlendModeMaterials: 0
   blendModeMaterials:
-    requiresBlendModeMaterials: 1
+    requiresBlendModeMaterials: 0
     applyAdditiveMaterial: 1
-    additiveMaterials:
-    - pageName: asterix.png
-      material: {fileID: 2100000, guid: e94864c82ebfc3247a4dbd6b9426fa48, type: 2}
+    additiveMaterials: []
     multiplyMaterials: []
     screenMaterials: []
   skeletonDataModifiers: []

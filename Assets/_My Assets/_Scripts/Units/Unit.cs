@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
 
-public enum UnitState
+public enum ActivityName
 {
-    free,
+    undefined,
+    patrolling,
     following,
-    attack,
+    transitioning,
+    woodHarvester,
 }
 
 public class Unit : MonoBehaviour
@@ -16,157 +18,175 @@ public class Unit : MonoBehaviour
     private Player player;
 
     [Header("Components")]
-    [SerializeField] private UnitTouchChecker touchChecker;
-    [SerializeField] private SkeletonAnimation skeletonAnimation;
-    private Spine.AnimationState spineAnimator;
+    [SerializeField] private SkeletonAnimation defaultSkeletonAnimation;
+    [SerializeField] private SkeletonAnimation woodCutterSkeletonAnimation;
+    //private SkeletonAnimation currentSkeletonAnimator;
+    private Spine.AnimationState defaultSpineAnimator;
+    private Spine.AnimationState woodCutterSpineAnimator;
+    private Spine.AnimationState currentSpineAnimator;
 
-    [Header("Animations")]
-    [SpineAnimation]
-    [SerializeField] private string idle;
-    [SpineAnimation]
-    [SerializeField] private string walk;
-
-    [Header("options")]
+    [Header("Options")]
     [SerializeField] private float walkSpeed;
-    [SerializeField] private float patrolingRadius;
 
-    private string currentAnimation;
-    public UnitState currentState = UnitState.free;
+    [Header("Activities")]
+    [SerializeField] private PatrollingActivity patrollingActivity;
+    [SerializeField] private FollowingActivity followingActivity;
+    [SerializeField] private TransitionActivity transitionActivity;
+    [SerializeField] private HarvestingWoodActivity harvestingWoodActivity;
 
-    private Vector2 currentTargetPoint;
-    private float patrollingWaitingTimer;
+    private UnitActivity _activity;
+    private string currentAnimationName;
+    private ActivityName currentActivity = ActivityName.undefined;
+    private UnitsSpawner spawner;
 
-    public Transform followingTransform { set; private get; }
-
-    private void OnEnable()
+    private void Start()
     {
-        touchChecker.OnUnitTouched += RecruitUnit;
+        Setup();
+        SetActivity(ActivityName.patrolling);
     }
 
-    private void OnDisable()
-    {
-        touchChecker.OnUnitTouched -= RecruitUnit;
-    }
-
-    private void RecruitUnit()
-    {
-        if (currentState != UnitState.following)
-        {
-            player.TryRecruitUnit(this);
-            walkSpeed = player.GetWalkSpeed();
-            SetState(UnitState.following);
-        }
-    }
-
-    void Start()
+    private void Setup()
     {
         walkSpeed = 3f;
         player = FindObjectOfType<Player>();
-        spineAnimator = skeletonAnimation.AnimationState;
-        SetRandomTargetPatrollingPoint();
+        //currentSkeletonAnimator = defaultSkeletonAnimation;
+        defaultSpineAnimator = defaultSkeletonAnimation.AnimationState;
+        woodCutterSpineAnimator = woodCutterSkeletonAnimation.AnimationState;
+        currentSpineAnimator = defaultSpineAnimator;
+        woodCutterSkeletonAnimation.gameObject.SetActive(false);
+        defaultSkeletonAnimation.gameObject.SetActive(true);
+
+        patrollingActivity.Setup();
+        followingActivity.Setup();
+        transitionActivity.Setup();
+        harvestingWoodActivity.Setup();
     }
 
-    void Update()
+    public void SetActivity(ActivityName newActivity)
     {
-        DoStateAction();
+        if (currentActivity == newActivity) return;
+
+        DoExitActivityAction(currentActivity);
+        currentActivity = newActivity;
+        DoEnterActivityAction(currentActivity);
     }
 
-    private void DoStateAction()
+    private void DoExitActivityAction(ActivityName name)
     {
-        switch (currentState)
+        switch (name)
         {
-            case UnitState.free:
-                DoPatrolling();
+            case ActivityName.patrolling:
+                spawner.ReduceFreeUnitCount();
                 break;
-            case UnitState.following:
-                DoFollowing();
+            case ActivityName.following:
                 break;
-            case UnitState.attack:
-                DoAttack();
+            case ActivityName.transitioning:
+                break;
+            case ActivityName.woodHarvester:
                 break;
             default:
                 break;
         }
     }
 
-    private void DoPatrolling()
+    private void DoEnterActivityAction(ActivityName name)
     {
-        if (Vector2.Distance(transform.position, currentTargetPoint) > 0.1f)
+        switch (name)
         {
-            MoveTowards(currentTargetPoint);
-            return;
-        }
-        patrollingWaitingTimer -= Time.deltaTime;
-        if (patrollingWaitingTimer > 0)
-        {
-            SetAnimation(idle, true);
-            return;
-        }
-        SetRandomTargetPatrollingPoint();
-    }
+            case ActivityName.patrolling:
+                _activity = patrollingActivity;
+                walkSpeed = 3f;
 
-    private void SetRandomTargetPatrollingPoint()
-    {
-        float delta = Random.Range(1f, 2.5f);
-        if (Random.value > 0.5)
-        {
-            delta *= -1f;
-        }
-        currentTargetPoint = new Vector2(transform.position.x + delta, transform.position.y);
-        patrollingWaitingTimer = Random.Range(3f, 6f);
-    }
+                break;
+            case ActivityName.following:
+                _activity = followingActivity;
+                walkSpeed = player.GetWalkSpeed();
 
-    private void DoFollowing()
-    {
-        if (followingTransform == null) return;
+                break;
+            case ActivityName.transitioning:
+                _activity = transitionActivity;
+                walkSpeed = 3f;
 
-        if (Vector2.Distance(transform.position, followingTransform.position) > 0.1f)
-        {
-            MoveTowards(followingTransform.position);
-        }
-        else
-        {
-            SetAnimation(idle, true);
+                break;
+            case ActivityName.woodHarvester:
+                _activity = harvestingWoodActivity;
+                walkSpeed = 3f;
+
+                Debug.Log("Set new animator");
+                defaultSkeletonAnimation.gameObject.SetActive(false);
+                woodCutterSkeletonAnimation.gameObject.SetActive(true);
+                currentSpineAnimator = woodCutterSpineAnimator;
+                currentAnimationName = string.Empty;
+                break;
+            default:
+                break;
         }
     }
 
-    private void MoveTowards(Vector2 destination)
+    void Update()
     {
-        SetAnimation(walk, true);
+        if (_activity == null) return;
+        
+        _activity.DoActivity();
+    }
+
+    public void MoveTowards(Vector2 destination)
+    {
+        SetAnimation("move");
         float direction = destination.x - transform.position.x;
         SetFacingSide(direction);
         transform.position = Vector2.MoveTowards(transform.position, destination, walkSpeed * Time.deltaTime);
+
+        void SetFacingSide(float direction)
+        {
+            if (direction == 0) return;
+            if (direction > 0)
+                transform.rotation = Quaternion.Euler(Vector3.zero);
+            else
+                transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        }
     }
 
-    private void SetFacingSide(float direction)
+    public void SetAnimation(string name)
     {
-        if (direction == 0) return;
+        if (currentAnimationName == name) return;
 
-        skeletonAnimation.skeleton.ScaleX = Mathf.Sign(direction);
+        currentAnimationName = name;
+        currentSpineAnimator.SetAnimation(0, name, true);
     }
 
-    private void DoAttack()
+    public void SetAnimation(string name, bool loop)
     {
+        if (currentAnimationName == name) return;
 
-    }
-
-    public void SetState(UnitState newState)
-    {
-        if (currentState == newState) return;
-
-        currentState = newState;
-    }
-
-    private void SetAnimation(string name, bool loop)
-    {
-        if (currentAnimation == name) return;
-
-        currentAnimation = name;
-        spineAnimator.SetAnimation(0, name, loop);
+        currentAnimationName = name;
+        currentSpineAnimator.SetAnimation(0, name, loop);
     }
 
     public void SetIndexInLayer(int index)
     {
-        skeletonAnimation.gameObject.GetComponent<MeshRenderer>().sortingOrder = index;
+        defaultSkeletonAnimation.gameObject.GetComponent<MeshRenderer>().sortingOrder = index;
+    }
+
+    public void SetFollowingTransform(Transform transform)
+    {
+        followingActivity.FollowingTransform = transform;
+    }
+
+    public void SetCurrentSawmill(Sawmill building)
+    {
+        transitionActivity.currentBuilding = building;
+        harvestingWoodActivity.currentBuilding = building;
+    }
+
+    public bool CanBeRecruited()
+    {
+        return currentActivity == ActivityName.patrolling;
+    }
+
+    public void SetSpawner(UnitsSpawner spawner)
+    {
+        this.spawner = spawner;
+        patrollingActivity.spawner = spawner;
     }
 }
